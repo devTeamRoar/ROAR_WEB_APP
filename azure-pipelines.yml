@@ -1,0 +1,33 @@
+# Azure Web App Deployment Pipeline
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  nodeVersion: '18.x'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: $(nodeVersion)
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+  displayName: 'Install dependencies'
+
+- script: |
+    npm run build:azure
+  displayName: 'Build application'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Your-Azure-Subscription'
+    appName: 'your-roar-industries-app'
+    package: '$(System.DefaultWorkingDirectory)'
+    appSettings: |
+      -NODE_ENV production
+      -NEXT_TELEMETRY_DISABLED 1
+  displayName: 'Deploy to Azure Web App'
