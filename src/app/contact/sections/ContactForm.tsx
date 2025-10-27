@@ -9,7 +9,7 @@ const ContactForm: FC = () => {
     name: "",
     company: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
     serviceType: "",
     message: "",
   });
@@ -37,8 +37,8 @@ const ContactForm: FC = () => {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
       newErrors.email = "Enter a valid email address.";
 
-    if (formData.phone && !/^\+?[0-9\s-]{7,15}$/.test(formData.phone))
-      newErrors.phone = "Enter a valid phone number.";
+    if (formData.phoneNumber && !/^\+?[0-9\s-]{7,15}$/.test(formData.phoneNumber))
+      newErrors.phoneNumber = "Enter a valid phone number.";
 
     if (!formData.serviceType)
       newErrors.serviceType = "Please select a service.";
@@ -80,7 +80,7 @@ const ContactForm: FC = () => {
             fullName: formData.name,
             company: formData.company,
             email: formData.email,
-            phone: formData.phone,
+            phoneNumber: formData.phoneNumber,
             serviceInterest: formData.serviceType,
             message: formData.message,
           }),
@@ -94,7 +94,7 @@ const ContactForm: FC = () => {
         name: "",
         company: "",
         email: "",
-        phone: "",
+        phoneNumber: "",
         serviceType: "",
         message: "",
       });
@@ -216,14 +216,14 @@ const ContactForm: FC = () => {
                 </label>
                 <input
                   type="tel"
-                  name="phone"
-                  value={formData.phone}
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
                   onChange={handleChange}
                   className="w-full px-4 py-4 bg-white border border-stone-300 rounded-lg text-stone-900 placeholder-stone-500 focus:border-stone-600 focus:ring-1 focus:ring-stone-600 transition-colors"
                   placeholder="+1 (555) 123-4567"
                 />
-                {errors.phone && (
-                  <p className="text-red-600 text-sm mt-2">{errors.phone}</p>
+                {errors.phoneNumber && (
+                  <p className="text-red-600 text-sm mt-2">{errors.phoneNumber}</p>
                 )}
               </div>
             </div>
