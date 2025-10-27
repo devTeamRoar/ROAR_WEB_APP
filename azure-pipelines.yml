@@ -26,7 +26,7 @@ steps:
   inputs:
     azureSubscription: 'Your-Azure-Subscription'
     appName: 'your-roar-industries-app'
-    package: '$(System.DefaultWorkingDirectory)'
+    package: '$(System.DefaultWorkingDirectory)/build'
     appSettings: |
       -NODE_ENV production
       -NEXT_TELEMETRY_DISABLED 1
